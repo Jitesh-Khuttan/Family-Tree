@@ -15,6 +15,13 @@ def get_family_request_parser():
 
 	return _family_parser
 
+def get_parentchild_request_parser():	
+	_pc_parser = reqparse.RequestParser()
+	_pc_parser.add_argument('parent_id', type=str, required=True, help="Please provide the parent_id.")
+	_pc_parser.add_argument('child_id', type=str, required=True, help="Please provide the child id.")
+
+	return _pc_parser
+
 
 def get_member_request_parser():
 	_member_parser = reqparse.RequestParser()

@@ -2,6 +2,7 @@ from flask_restful import Api
 from code.resources.user import UserRegister, User, UserLogin
 from code.resources.family import RegisterFamily, Family
 from code.resources.member import MemberRegister, Member
+from code.resources.parent_child import ParentChild
 
 
 def initialize_urls(app):
@@ -19,5 +20,8 @@ def initialize_urls(app):
 	#Member APIs
 	api.add_resource(MemberRegister, '/member/register')
 	api.add_resource(Member, '/member')
+
+	#Relationships
+	api.add_resource(ParentChild, '/add-parent')
 
 	return app

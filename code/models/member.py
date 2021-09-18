@@ -1,6 +1,5 @@
 from code.db.alchemy_db import db
 
-
 class MemberModel(db.Model):
 
 	__tablename__ = "member"
@@ -10,9 +9,13 @@ class MemberModel(db.Model):
 	last_name = db.Column(db.String(60), nullable=True)
 	birth_date = db.Column(db.DateTime, nullable=False)
 
+	parents = db.relationship("MemberModel", secondary="parent_child", primaryjoin="MemberModel.member_id==parent_child.c.child_id", 
+							  secondaryjoin="MemberModel.member_id==parent_child.c.parent_id", backref="children", lazy=True)
+
 	def to_json(self):
 		return {"member_id": self.member_id, "family_name": self.family_info.family_name,
-				"first_name": self.first_name, "last_name": self.last_name, "birth_date": self.birth_date.strftime("%d-%m-%Y")}
+				"first_name": self.first_name, "last_name": self.last_name, "birth_date": self.birth_date.strftime("%d-%m-%Y"),
+				"parents": [{"member_id": p.member_id, "first_name": p.first_name, "last_name": p.last_name} for p in self.parents]}
 
 	def add_to_db(self):
 		db.session.add(self)
