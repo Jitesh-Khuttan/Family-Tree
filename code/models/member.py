@@ -15,7 +15,8 @@ class MemberModel(db.Model):
 	def to_json(self):
 		return {"member_id": self.member_id, "family_name": self.family_info.family_name,
 				"first_name": self.first_name, "last_name": self.last_name, "birth_date": self.birth_date.strftime("%d-%m-%Y"),
-				"parents": [{"member_id": p.member_id, "first_name": p.first_name, "last_name": p.last_name} for p in self.parents]}
+				"parents": [{"member_id": p.member_id, "first_name": p.first_name, "last_name": p.last_name} for p in self.parents],
+				"children": [{"member_id": p.member_id, "first_name": p.first_name, "last_name": p.last_name} for p in self.children]}
 
 	def add_to_db(self):
 		db.session.add(self)
