@@ -36,6 +36,36 @@ def get_member_request_parser():
 	_member_parser.add_argument('family_id', type=str, required=True, help="Please provide the family id.")
 	_member_parser.add_argument('first_name', type=str, required=True, help="Please provide the first name.")
 	_member_parser.add_argument('last_name', type=str, required=True, help="Please provide the last name.")
+	_member_parser.add_argument('address', type=str, required=False, help="Please provide the address.")
+	_member_parser.add_argument('email', type=str, required=False, help="Please provide the email id.")
+	_member_parser.add_argument('phone_number', type=str, required=False, help="Please provide the phone number.")
 	_member_parser.add_argument('birth_date', type=str, required=True, help="Please provide the birth date.")
+
+	return _member_parser
+
+def get_member_post_later_data_request_parser():
+	_member_parser = reqparse.RequestParser()
+	_member_parser.add_argument('member_id', type=str, required=True, help="Please provide the member_id.")
+	_member_parser.add_argument('address', type=str, required=False, help="Please provide the address.")
+	_member_parser.add_argument('email', type=str, required=False, help="Please provide the email id.")
+	_member_parser.add_argument('phone_number', type=str, required=False, help="Please provide the phone number.")
+
+	return _member_parser
+
+def get_member_update_data_request_parser():
+	_member_parser = reqparse.RequestParser()
+	_member_parser.add_argument('member_id', type=str, required=True, help="Please provide the member_id.")
+	_member_parser.add_argument('current_address', type=str, required=False, help="Please provide the current address.")
+	_member_parser.add_argument('new_address', type=str, required=False, help="Please provide the new address.")
+	_member_parser.add_argument('current_email', type=str, required=False, help="Please provide the current email id.")
+	_member_parser.add_argument('new_email', type=str, required=False, help="Please provide the new email id.")
+	_member_parser.add_argument('current_phone_number', type=str, required=False, help="Please provide the current phone number.")
+	_member_parser.add_argument('new_phone_number', type=str, required=False, help="Please provide the new phone number.")
+
+	return _member_parser
+
+def get_member_delete_parser():
+	_member_parser = reqparse.RequestParser()
+	_member_parser.add_argument('member_id', type=str, required=True, help="Please provide the member_id.")
 
 	return _member_parser

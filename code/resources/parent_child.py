@@ -1,4 +1,5 @@
 from flask_restful import Resource
+from flask_jwt_extended import jwt_required
 from code.models.parent_child import ParentChildModel
 from code.models.member import MemberModel
 from code.utils.parsers import get_parentchild_request_parser
@@ -16,6 +17,19 @@ class ParentChild(Resource):
 		try:
 			pc_relation.add_to_db()
 			return pc_relation.to_json(), 201
+		except Exception as exp:
+			return {"message": "Failed to add parent-child relation.", "errors": str(exp)}
+
+	@jwt_required()
+	def delete(self):
+		request_data = _parent_child_parser.parse_args()
+		pc_relation = ParentChildModel.find_relation_by_ids(pid=request_data['parent_id'], cid=request_data['child_id'])
+		try:
+			if pc_relation:
+				for pc in pc_relation:
+					pc.delete_from_db()
+				return {"message": "Relation deleted successfully!"}, 200
+			return {"message": "No relation found!"}, 404
 		except Exception as exp:
 			return {"message": "Failed to add parent-child relation.", "errors": str(exp)}
 

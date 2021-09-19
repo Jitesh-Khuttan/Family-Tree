@@ -3,8 +3,6 @@ from flask_jwt_extended import jwt_required
 from code.models.parent_child import ParentChildModel
 from code.models.member import MemberModel
 from code.utils.parsers import get_sibling_request_parser
-import logging
-logging.basicConfig(level=2)
 
 
 _sibling_parser = get_sibling_request_parser()
@@ -29,7 +27,6 @@ class Sibling(Resource):
 	@jwt_required()
 	def delete(self):
 		request_data = _sibling_parser.parse_args()
-		logging.error(f"Request:- {request_data}")
 		sibling_1 = MemberModel.find_by_member_id(request_data['sibling_id1'])
 		parents = sibling_1.get_parents()
 
@@ -38,7 +35,6 @@ class Sibling(Resource):
 
 		for parent in parents:
 			pc_relation = ParentChildModel.find_relation_by_ids(pid=parent.get_member_id(), cid=request_data['sibling_id2'])
-			logging.error(f"Found- {pc_relation}")
 			if pc_relation:
 				for pc in pc_relation:
 					pc.delete_from_db()
