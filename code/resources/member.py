@@ -32,7 +32,7 @@ class Member(Resource):
 		last_name = request.args.get('lastname')
 
 		if member_id:
-			member = MemberModel.find_by_id(member_id)
+			member = MemberModel.find_by_member_id(member_id)
 			if member:
 				return member.to_json(), 200
 

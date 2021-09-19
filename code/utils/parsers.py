@@ -23,6 +23,14 @@ def get_parentchild_request_parser():
 	return _pc_parser
 
 
+def get_sibling_request_parser():	
+	_sibling_parser = reqparse.RequestParser()
+	_sibling_parser.add_argument('sibling_id1', type=str, required=True, help="Please provide the sibling 1's id.")
+	_sibling_parser.add_argument('sibling_id2', type=str, required=True, help="Please provide the sibling 2's id.")
+
+	return _sibling_parser
+
+
 def get_member_request_parser():
 	_member_parser = reqparse.RequestParser()
 	_member_parser.add_argument('family_id', type=str, required=True, help="Please provide the family id.")
