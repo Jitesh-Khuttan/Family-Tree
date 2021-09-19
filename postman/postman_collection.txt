@@ -1,0 +1,16 @@
+https://www.getpostman.com/collections/195cd1f1cd083b507f65
+
+Please note, there are two env varibales used in collection:
+1.) {{base_url}} -> This is the url at which your App is running.
+2.) {{jwt_token}} -> This is dynamically added to postman environment variables once you hit /login endpoint.
+
+You can add below code to your TESTS (in postman) for /login endpoint.
+
+
+pm.test("Token is not undefined", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.access_token).to.not.be.null;
+});
+
+var jsonData = pm.response.json();
+pm.environment.set("jwt_token", jsonData.access_token);
