@@ -127,4 +127,4 @@ Following information is provided by the API.
     - <b> /grandparent/\<int:member_id\> </b> [GET]: This API is used to retrieve all the grandparents for the given member id.
   
 7. Cousin API:
-    - <b> /cousin/\<int:member_id\> [GET]: This API is used to retrieve all the cousins for the given member id.
+    - <b> /cousin/\<int:member_id\> </b> [GET]: This API is used to retrieve all the cousins for the given member id.
