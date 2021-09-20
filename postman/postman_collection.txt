@@ -1,4 +1,4 @@
-https://www.getpostman.com/collections/195cd1f1cd083b507f65
+Please add this collection to your postman:- https://www.getpostman.com/collections/195cd1f1cd083b507f65
 
 Please note, there are two env varibales used in collection:
 1.) {{base_url}} -> This is the url at which your App is running.
