@@ -1,6 +1,6 @@
 # Family-Tree
 
-This is REST API implemented in flask capable of keeping track of people and the connections between them.
+This is a REST API implemented in flask capable of keeping track of people and the connections between them.
 
 
 ## How to execute:
@@ -8,6 +8,7 @@ This is REST API implemented in flask capable of keeping track of people and the
 > source venv/bin/activate  
 > python code/app.py  
 
+Also - ERD.png shows the ER-Diagram for relations. A family has already been added to DB, one can use that for testing. To check the family tree, please check Examply-Family.png file.
 
 
 ## Project Details
